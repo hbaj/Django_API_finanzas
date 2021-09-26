@@ -2,9 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.contrib.auth.models import User, Group
+from Finanzas.models import Variable, VariableMeasure
 from rest_framework import viewsets
 from rest_framework import permissions
-from Finanzas.serializers import UserSerializer, GroupSerializer
+from Finanzas.serializers import UserSerializer, GroupSerializer, VariableSerializer, VariableMeasureSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -22,4 +23,20 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class VariableViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows process variables to be viewed or edited.
+    """
+    queryset = Variable.objects.all()
+    serializer_class = VariableSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class VarMeasureViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows process variables to be viewed or edited.
+    """
+    queryset = VariableMeasure.objects.all()
+    serializer_class = VariableMeasureSerializer
     permission_classes = [permissions.IsAuthenticated]

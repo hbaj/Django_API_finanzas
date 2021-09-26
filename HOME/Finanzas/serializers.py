@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User, Group
+from Finanzas.models import Variable, VariableMeasure
 from rest_framework import serializers
 
 
@@ -12,3 +13,13 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = ['url', 'name']
+		
+class VariableSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Variable
+        fields = '__all__'
+
+class VariableMeasureSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = VariableMeasure
+        fields = '__all__'
