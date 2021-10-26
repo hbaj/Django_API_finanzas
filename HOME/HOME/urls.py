@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import include, path
 from rest_framework import routers
 from .settings import BASE_DIR
-print('-------->',BASE_DIR)
+# print('-------->',BASE_DIR)
 from Finanzas import views
 
 router = routers.DefaultRouter()
@@ -29,5 +29,6 @@ router.register(r'var-meassures', views.VarMeasureViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('banks/', views.BankView)
 ]

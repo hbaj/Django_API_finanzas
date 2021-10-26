@@ -10,7 +10,7 @@ class Variable(models.Model):
 
 
 class VariableMeasure(models.Model):
-    variable = models.ForeignKey(Variable, on_delete = models.CASCADE)
+    variable = models.ForeignKey(Variable, related_name = 'variableMeasures',on_delete = models.CASCADE)
     value = models.CharField(max_length = 100)
     date = models.DateTimeField()
     def __str__():
