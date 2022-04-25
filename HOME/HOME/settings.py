@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -61,7 +61,8 @@ ROOT_URLCONF = 'HOME.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        #tell Django where react has main html templates:
+        'DIRS': [os.path.join(BASE_DIR,'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,9 +126,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+# Tell Django where to look for all static files from REACT
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+#location for production where static files will be collected
+# STATIC_ROOT = 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
@@ -141,6 +147,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     'http://192.168.1.222:8000',
     'http://127.0.0.1:8000',
+    'http://127.0.0.1:5500',
     'http://192.168.1.222:8080',
     'http://127.0.0.1:5500',
 

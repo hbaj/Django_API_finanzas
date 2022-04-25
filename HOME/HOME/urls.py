@@ -18,17 +18,20 @@ from rest_framework import routers
 from .settings import BASE_DIR
 # print('-------->',BASE_DIR)
 from Finanzas import views
+from django.shortcuts import render
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'vars', views.VariableViewSet)
 router.register(r'var-meassures', views.VarMeasureViewSet)
+def render_single_url(request):
+    return  render(request,"index.html")
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('banks/', views.BankView)
+    path('banks/', render_single_url)
 ]
